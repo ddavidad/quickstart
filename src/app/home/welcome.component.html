@@ -1,0 +1,21 @@
+﻿<content>
+    <div>
+        Welcome page
+    </div>
+    <div>Page Name {{pageName}}</div>
+    <div>
+        <input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="20" data-slider-step="1" data-slider-value="14" />
+        <a [routerLink]="['/Loanquestionnaire']">Quetionnaire</a>
+</div>
+    <script>
+        function my() {
+            // Without JQuery
+            var slider = new Slider('#ex1', {
+                formatter: function (value) {
+                    return 'Current value: ' + value;
+                }
+            });
+        };
+        my();
+    </script>
+</content>

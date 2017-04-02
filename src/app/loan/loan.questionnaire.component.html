@@ -1,0 +1,459 @@
+﻿<content>
+    <div>Loan questionnaire component</div>
+    <div>Page Name {{pageName}}</div>
+
+    <div class="panel-body">
+        <form class="form-horizontal"
+              (ngSubmit)="save(loanQuestionnaireFrom.value)"
+              [formGroup]="loanQuestionnaireFrom">
+
+            <!--Start : Loan Purpose Selection-->
+            <div class="form-group">
+                <label class="col-md-2 control-label">Loan Purpose</label>
+                <div class="col-md-8">
+                    <div class="btn-group" data-toggle="buttons">
+                        <label [ngClass]="{'btn': true,    
+                                           'btn-info':loanQuestionnaireFrom.get('loanPurpose').value != 1,
+                                           'btn-primary':loanQuestionnaireFrom.get('loanPurpose').value == 1}">
+                            <input type="radio"
+                                   name="loanPurpose" 
+                                   value="1" 
+                                   formControlName="loanPurpose">Property Purchase
+                        </label>
+                        <label [ngClass] ="{'btn': true, 
+                                            'btn-info': loanQuestionnaireFrom.get('loanPurpose').value != 2 , 
+                                            'btn-primary': loanQuestionnaireFrom.get('loanPurpose').value == 2}" >
+                            <input type="radio" 
+                                   name="loanPurpose" 
+                                   value="2"
+                                   formControlName="loanPurpose">Asset Purchase
+                        </label>
+                        <label [ngClass]="{'btn': true,
+                                           'btn-info': loanQuestionnaireFrom.get('loanPurpose').value != 3,
+                                           'btn-primary': loanQuestionnaireFrom.get('loanPurpose').value == 3 }">
+                            <input type="radio"
+                                   name="loanPurpose" 
+                                   value="3" 
+                                   formControlName="loanPurpose">Private Expenses
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!--End : Loan Purpose Selection-->
+            <!--Start : Property Purchase Loan Purpose Related Fields-->
+            <!--Property Type-->
+            <div class="form-group row" *ngIf="loanQuestionnaireFrom.get('loanPurpose').value == 1">
+                <label class="col-md-4 control-label" for="selectPropery">Select Type of Propety:</label>
+                <div class="col-md-4">
+                    <div class="input-group-btn">
+                        <div class="gx-dropdown-group">
+                            <select class="form-control gx-dropdown gx-text-table" id="selectPropery" formControlName="propertyType" required>
+                                <option value="1">Industrial</option>
+                                <option value="2">Commercial</option>
+                                <option value="3">Office</option>
+                                <option value="4">Retail</option>
+                            </select>
+                            <span class="icon-dropdown-arrow"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <h3>Property Address</h3>
+
+            <!--Country-->
+            <div class="form-group">
+                <label class="col-md-2 control-label" for="selectAsset">Country</label>
+                <div class="col-md-6">
+                    <input class="form-control"
+                           id="country"
+                           type="text"
+                           placeholder="County (required)"
+                           formControlName="country" />
+
+                </div>
+            </div>
+
+            <!--City-->
+            <div class="form-group">
+                <label class="col-md-2 control-label" for="selectAsset">City</label>
+                <div class="col-md-6">
+                    <input class="form-control"
+                           id="city"
+                           type="text"
+                           placeholder="City (required)"
+                           formControlName="city" />
+
+                </div>
+            </div>
+
+            <!--Street Name-->
+            <div class="form-group">
+                <label class="col-md-2 control-label" for="selectAsset">Street Name</label>
+                <div class="col-md-6">
+                    <input class="form-control"
+                           id="streetName"
+                           type="text"
+                           placeholder="Street Name (required)"
+                           formControlName="streetName" />
+
+                </div>
+            </div>
+
+            <!--Street Number-->
+            <div class="form-group">
+                <label class="col-md-2 control-label" for="selectAsset">Street Number</label>
+                <div class="col-md-6">
+                    <input class="form-control"
+                           id="streetNumber"
+                           type="text"
+                           placeholder="Street Number (required)"
+                           formControlName="streetNumber" />
+
+                </div>
+            </div>
+
+            <!--Property Price -->
+            <div class="form-group">
+                <label class="col-md-2 control-label">Property Price</label>
+                <div class="col-md-6">
+                    <input class="form-control"
+                           id="inputPropetyValue"
+                           type="range"
+                           formControlName="propertyPrice" />
+                </div>
+            </div>
+
+            <!--End : Property Purchase Loan Purpose Related Fields-->
+            <!--Start : Asset Purchase Loan Purpose Related Fields-->
+            <div class="form-group">
+                <label class="col-md-2 control-label" for="selectAsset">Select Type of Asset</label>
+                <select class="form-control" id="selectAsset" formControlName="assetType">
+                    <option value="1">Private car</option>
+                    <option value="2">Truck</option>
+                    <option value="3">Bus</option>
+                </select>
+            </div>
+
+            <!--Asset Price Slider-->
+            <div class="form-group">
+                <label class="col-md-2 control-label">Asset Price</label>
+                <div class="col-md-6">
+                    <input class="form-control"
+                           id="assetPrice"
+                           type="range"
+                           formControlName="assetPrice" />
+                </div>
+            </div>
+
+            <!--End : Asset Purchase Loan Purpose Related Fields-->
+            <!--Start: General Applicant Infomation-->
+
+            <h3>General Applicant Information</h3>
+            <!--Employee Education type-->
+            <div class="form-group">
+                <label class="col-md-2 control-label">Education Type</label>
+                <div class="col-md-6">
+                    <input class="form-control"
+                           id="educationType"
+                           type="text"
+                           placeholder="Education Type (required)"
+                           formControlName="educationType" />
+
+                </div>
+            </div>
+
+
+            <!--Marital Status-->
+            <div class="form-group">
+                <label class="col-md-2 control-label">Marital Status</label>
+                <div class="col-md-6">
+                    <input class="form-control"
+                           id="maritalStatus"
+                           type="text"
+                           placeholder="Marital Staus(required)"
+                           formControlName="maritalStatus" />
+
+                </div>
+            </div>
+
+            <!--Number Of Childrens-->
+            <div class="form-group">
+                <label class="col-md-2 control-label">Childrens Number</label>
+                <div class="col-md-6">
+                    <input class="form-control"
+                           id="numberOfChildrens"
+                           type="number"
+                           formControlName="numberOfChildrens" />
+
+                </div>
+            </div>
+
+            <!--End: General Applicant Infomation-->
+            <!--Start : Occupation Selection-->
+            <div class="form-group">
+                <label class="col-md-2 control-label">Occupation Type</label>
+                <div class="col-md-8">
+                    <label class="radio-inline">
+                        <input type="radio"
+                               value="1"
+                               formControlName="occupationType">Employee
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio"
+                               value="2"
+                               formControlName="occupationType">Business Owner
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio"
+                               value="3"
+                               formControlName="occupationType">Government Employee
+                    </label>
+                </div>
+            </div>
+            <!--End : Occupation Selection-->
+            <!--Start : Employee Occupation Type-->
+
+            <h3>Employee Occupation Fields</h3>
+
+            <!--Employee Company Name-->
+            <div class="form-group">
+                <label class="col-md-2 control-label">Company Name</label>
+                <div class="col-md-6">
+                    <input class="form-control"
+                           id="employeeCompanyName"
+                           type="text"
+                           placeholder="Company Name (required)"
+                           formControlName="employeeCompanyName" />
+
+                </div>
+            </div>
+
+            <!--Employee Business Industry-->
+            <div class="form-group">
+                <label class="col-md-2 control-label">Business Industry</label>
+                <div class="col-md-6">
+                    <input class="form-control"
+                           id="employeeBusinessIndustry"
+                           type="text"
+                           placeholder="Business Industry (required)"
+                           formControlName="employeeBusinessIndustry" />
+
+                </div>
+            </div>
+
+            <!--Employee Business role-->
+            <div class="form-group">
+                <label class="col-md-2 control-label">Business Role</label>
+                <div class="col-md-6">
+                    <input class="form-control"
+                           id="employeeBusinessRole"
+                           type="text"
+                           placeholder="Business Role (required)"
+                           formControlName="employeeBusinessRole" />
+
+                </div>
+            </div>
+
+            <!--Employee Workin start date -->
+            <div class="form-group">
+                <label class="col-md-2 control-label">Working Start Date</label>
+                <div class="col-md-6">
+                    <input class="form-control"
+                           id="employeeWorkingStartDate"
+                           type="date"
+                           formControlName="employeeWorkingStartDate" />
+
+                </div>
+            </div>
+
+
+            <!--End : Employee Occupation Type-->
+            <!--Start : Business Owner Occupation Type-->
+
+            <h3>Employee Occupation Fields</h3>
+
+            <!--Business Owner Business name-->
+            <div class="form-group">
+                <label class="col-md-2 control-label">Business Name</label>
+                <div class="col-md-6">
+                    <input class="form-control"
+                           id="businessOwnerBusinessName"
+                           type="text"
+                           placeholder="Business Name (required)"
+                           formControlName="businessOwnerBusinessName" />
+
+                </div>
+            </div>
+
+            <!--Business Owner Business Industry-->
+            <div class="form-group">
+                <label class="col-md-2 control-label">Business Industry</label>
+                <div class="col-md-6">
+                    <input class="form-control"
+                           id="businessOwnerBusinessIndustry"
+                           type="text"
+                           placeholder="Business Industry (required)"
+                           formControlName="businessOwnerBusinessIndustry" />
+
+                </div>
+            </div>
+
+            <!--Business Owner Business Establishment Date-->
+            <div class="form-group">
+                <label class="col-md-2 control-label">Business Establishment Date</label>
+                <div class="col-md-6">
+                    <input class="form-control"
+                           id="businessOwnerBusinessEstablishmentDate"
+                           type="date"
+                           placeholder="Business Industry (required)"
+                           formControlName="businessOwnerBusinessEstablishmentDate" />
+
+                </div>
+            </div>
+
+            <!--Business Owner Number Of Workers-->
+            <div class="form-group">
+                <label class="col-md-2 control-label">Number Of Workers</label>
+                <div class="col-md-6">
+                    <input class="form-control"
+                           id="businessOwnerNumberOfWorkers"
+                           type="number"
+                           formControlName="businessOwnerNumberOfWorkers" />
+                </div>
+            </div>
+
+            <!--End : Business Owner Occupation Type-->
+            <!--Start : Government Employee Occupation Type-->
+
+            <h3>Government Employee Fields</h3>
+
+            <!--Government Institution-->
+            <div class="form-group">
+                <label class="col-md-2 control-label">Government Institution</label>
+                <div class="col-md-6">
+                    <input class="form-control"
+                           id="governmentInstitution"
+                           type="text"
+                           placeholder="Government Institution (required)"
+                           formControlName="governmentInstitution" />
+                </div>
+            </div>
+
+            <!--Government Employee Role-->
+            <div class="form-group">
+                <label class="col-md-2 control-label">Employee Role</label>
+                <div class="col-md-6">
+                    <input class="form-control"
+                           id="governmentEmployeeRole"
+                           type="text"
+                           placeholder="Employee Role (required)"
+                           formControlName="governmentEmployeeRole" />
+                </div>
+            </div>
+
+            <!--Government Employee Working Start Date-->
+            <div class="form-group">
+                <label class="col-md-2 control-label">Working Start Date</label>
+                <div class="col-md-6">
+                    <input class="form-control"
+                           id="governmentEmployeeWorkingStartDate"
+                           type="date"
+                           formControlName="governmentEmployeeWorkingStartDate" />
+                </div>
+            </div>
+
+            <!--End : Government Employee Occupation Type-->
+            <!--Start : Financial Information-->
+
+            <h3>Financial Information</h3>
+
+            <!--Bank Account Balance-->
+            <div class="form-group">
+                <label class="col-md-2 control-label">Bank Account Balance</label>
+                <div class="col-md-6">
+                    <input class="form-control"
+                           id="bankAccountBalance"
+                           type="range"
+                           formControlName="bankAccountBalance" />
+
+                </div>
+            </div>
+
+            <!--Total Liabilities-->
+            <div class="form-group">
+                <label class="col-md-2 control-label">Total Liabilities</label>
+                <div class="col-md-6">
+                    <input class="form-control"
+                           id="totalLiabilities"
+                           type="range"
+                           formControlName="totalLiabilities" />
+
+                </div>
+            </div>
+
+            <!--Montly Income-->
+            <div class="form-group">
+                <label class="col-md-2 control-label">Monthly Income</label>
+                <div class="col-md-6">
+                    <input class="form-control"
+                           id="monthlyIncome"
+                           type="range"
+                           formControlName="monthlyIncome" />
+
+                </div>
+            </div>
+
+            <!--End : Financial Information-->
+            <!--Start : About The Loan Fields-->
+
+            <h3>About The Loan</h3>
+
+            <!--Loan Term-->
+            <div class="form-group">
+                <label class="col-md-2 control-label">Loan Term</label>
+                <div class="col-md-6">
+                    <input class="form-control"
+                           id="loanTerm"
+                           type="range"
+                           formControlName="loanTerm" />
+                </div>
+            </div>
+
+            <!--Loan Amount-->
+            <div class="form-group">
+                <label class="col-md-2 control-label">Loan Term</label>
+                <div class="col-md-6">
+                    <input class="form-control"
+                           id="loanAmount"
+                           type="range"
+                           formControlName="loanAmount" />
+                </div>
+            </div>
+
+            <!--End : About The Loan Fields-->
+            <!--Submit Button-->
+            <div class="form-group">
+                <div class="col-md-4 col-md-offset-2">
+                    <span>
+                        <button class="btn btn-primary"
+                                type="submit">
+                            Save
+                        </button>
+                    </span>
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+
+    <div><a [routerLink]="['/quote']">Quote</a></div>
+    <br>Property Type: {{ loanQuestionnaireFrom.get('propertyType').value }}
+    <br>Property Type: {{ loanQuestionnaireFrom.get('loanPurpose').value }}
+
+
+
+</content>
